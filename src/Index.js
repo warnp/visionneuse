@@ -9,9 +9,27 @@ let data = {
   commentaire: 'Un commentaire'
 };
 
+class NextButton extends React.Component {
+  constructor() {
+    super();
+
+    this.handleclick = this.handleclick.bind(this);
+  }
+  handleclick() {
+    alert("Go to the next photo");
+  }
+  render() {
+    return (
+      <div onClick={this.handleclick}>
+        Right button
+      </div>
+    );
+  }
+}
+
 class Comment extends React.Component {
   render() {
-    let commentaire = this.props.commentaire;
+    let commentaire = this.props.data.commentaire;
     return (
       <div className="comment">
         { commentaire }
@@ -32,7 +50,10 @@ class Contenu extends React.Component {
 }
 
 render(
-  <Contenu data= { data } />,
+  <div>
+    <Contenu data= { data } />
+    <NextButton />
+  </div>,
   // React.createElement(Contenu, null),
   document.getElementById('content')
 );
