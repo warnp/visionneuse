@@ -9,7 +9,18 @@ let data = {
   commentaire: 'Un commentaire'
 };
 
-class NextButton extends React.Component {
+const leftButton = {
+  getDefaultProps: () => {
+    return (
+      <div>
+        TOTO
+      </div>
+    )
+
+  }
+};
+
+class Button extends React.Component {
   constructor() {
     super();
 
@@ -19,6 +30,7 @@ class NextButton extends React.Component {
     alert("Go to the next photo");
   }
   render() {
+    console.log(this.props);
     return (
       <div onClick={this.handleclick}>
         Right button
@@ -26,6 +38,8 @@ class NextButton extends React.Component {
     );
   }
 }
+
+React.reactMixin.onClass(Button, leftButton);
 
 class Comment extends React.Component {
   render() {
