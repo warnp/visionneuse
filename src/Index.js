@@ -9,37 +9,44 @@ let data = {
   commentaire: 'Un commentaire'
 };
 
-const leftButton = {
-  getDefaultProps: () => {
-    return (
-      <div>
-        TOTO
-      </div>
-    )
-
+const button = (Component, state) => class extends React.Component {
+  constructor(props) {
+    super(props);
+    // this.state = state;
+    // this.props.buttonSide = '';
+    // this.Component = Component;
+    // this.handleclick = this.handleclick.bind(this, 'Bonjour!');
   }
-};
-
-class Button extends React.Component {
-  constructor() {
-    super();
-
-    this.handleclick = this.handleclick.bind(this);
-  }
-  handleclick() {
-    alert("Go to the next photo");
+  handleclick(text, e) {
+    // alert(this.props.buttonSide);
   }
   render() {
-    console.log(this.props);
     return (
-      <div onClick={this.handleclick}>
-        Right button
-      </div>
+      // <div onClick={this.handleclick}>
+      //   Right button
+      // </div>
+      <Component {...this.props} />
     );
   }
 }
 
-React.reactMixin.onClass(Button, leftButton);
+class LeftButton extends React.Component {
+  constructor(props){
+    super(props);
+    this.handleclick = this.handleclick.bind(this, 'Hello there!');
+  }
+  handleclick(text, e){
+    // this.props.buttonSide = 'left';
+    // alert(text);
+  }
+  render() {
+    return (
+      <div onClick={this.handleclick} >
+        Left button
+      </div>
+    );
+  }
+}
 
 class Comment extends React.Component {
   render() {
@@ -63,10 +70,12 @@ class Contenu extends React.Component {
   }
 }
 
+const Wrapper = button(LeftButton);
+
 render(
   <div>
     <Contenu data= { data } />
-    <NextButton />
+    <Wrapper />
   </div>,
   // React.createElement(Contenu, null),
   document.getElementById('content')
