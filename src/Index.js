@@ -17,9 +17,9 @@ const button = (Component, state) => class extends React.Component {
     // this.Component = Component;
     // this.handleclick = this.handleclick.bind(this, 'Bonjour!');
   }
-  handleclick(text, e) {
-    // alert(this.props.buttonSide);
-  }
+  // handleclick(text, e) {
+  //   alert(text);
+  // }
   render() {
     return (
       // <div onClick={this.handleclick}>
@@ -33,16 +33,44 @@ const button = (Component, state) => class extends React.Component {
 class LeftButton extends React.Component {
   constructor(props){
     super(props);
-    this.handleclick = this.handleclick.bind(this, 'Hello there!');
+    this.handleclick = this.handleclick.bind(this, 'Go to the left!');
   }
   handleclick(text, e){
     // this.props.buttonSide = 'left';
-    // alert(text);
+    alert(text);
   }
   render() {
     return (
       <div onClick={this.handleclick} >
         Left button
+      </div>
+    );
+  }
+}
+
+class RightButton extends React.Component {
+  constructor(props){
+    super(props);
+    this.handleclick = this.handleclick.bind(this, 'Go to the Right!');
+  }
+  handleclick(text, e){
+    // this.props.buttonSide = 'left';
+    alert(text);
+  }
+  render() {
+    return (
+      <div onClick={this.handleclick} >
+        Right button
+      </div>
+    );
+  }
+}
+
+class Image extends React.Component {
+  render() {
+    return(
+      <div>
+        <img src="../images/reactjs.png" />
       </div>
     );
   }
@@ -70,12 +98,15 @@ class Contenu extends React.Component {
   }
 }
 
-const Wrapper = button(LeftButton);
+const Wrapper1 = button(LeftButton);
+const Wrapper2 = button(RightButton);
 
 render(
   <div>
     <Contenu data= { data } />
-    <Wrapper />
+    <Image />
+    <Wrapper1 />
+    <Wrapper2 />
   </div>,
   // React.createElement(Contenu, null),
   document.getElementById('content')
