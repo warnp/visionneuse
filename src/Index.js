@@ -6,61 +6,60 @@ window.React = React;
 
 let data = {
   id: 1,
-  commentaire: 'Un commentaire'
+  src: 'src/images/reactjs.png',
+  jour: 1
 };
 
-const button = (Component, state) => class extends React.Component {
+// const button = (Component, state) => class extends React.Component {
+class Master extends React.Component {
   constructor(props) {
     super(props);
     // this.state = state;
     // this.props.buttonSide = '';
     // this.Component = Component;
-    // this.handleclick = this.handleclick.bind(this, 'Bonjour!');
+    this.handleClick = this.handleClick.bind(this);
   }
-  // handleclick(text, e) {
+  // handleClick(text) {
   //   alert(text);
   // }
   render() {
+    // const childrenWithProps = React.Children.map(this.props.children,
+    // (child) => React.cloneElement(child, {
+    //   handleClick: this.handleClick
+    // }))
     return (
-      // <div onClick={this.handleclick}>
-      //   Right button
-      // </div>
-      <Component {...this.props} />
-    );
-  }
-}
-
-class LeftButton extends React.Component {
-  constructor(props){
-    super(props);
-    this.handleclick = this.handleclick.bind(this, 'Go to the left!');
-  }
-  handleclick(text, e){
-    // this.props.buttonSide = 'left';
-    alert(text);
-  }
-  render() {
-    return (
-      <div onClick={this.handleclick} >
-        Left button
+      <div>
+        // {childrenWithProps}
+        <Button direction='left'/>
+        <Button direction='right'/>
       </div>
     );
   }
 }
 
-class RightButton extends React.Component {
-  constructor(props){
-    super(props);
-    this.handleclick = this.handleclick.bind(this, 'Go to the Right!');
+class Wrapper extends React.Component {
+  render() {
+    return (
+      <Master>
+        <Button direction='left' />
+        <Button direction='right' />
+      </Master>
+    );
   }
-  handleclick(text, e){
-    // this.props.buttonSide = 'left';
-    alert(text);
+}
+
+class Button extends React.Component {
+  constructor() {
+    super();
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick(text) {
+    alert(text)
   }
   render() {
     return (
-      <div onClick={this.handleclick} >
-        Right button
+      <div onClick={() => this.handleClick(this.props.direction)}>
+        {this.props.direction}
       </div>
     );
   }
@@ -70,7 +69,7 @@ class Image extends React.Component {
   render() {
     return(
       <div>
-        <img src="../images/reactjs.png" />
+        <img src="src/images/reactjs.png" />
       </div>
     );
   }
@@ -98,15 +97,14 @@ class Contenu extends React.Component {
   }
 }
 
-const Wrapper1 = button(LeftButton);
-const Wrapper2 = button(RightButton);
+// const Wrapper1 = button(LeftButton);
+// const Wrapper2 = button(RightButton);
 
 render(
   <div>
     <Contenu data= { data } />
     <Image />
-    <Wrapper1 />
-    <Wrapper2 />
+    <Master />
   </div>,
   // React.createElement(Contenu, null),
   document.getElementById('content')
