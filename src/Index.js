@@ -5,25 +5,46 @@ import { render } from 'react-dom';
 window.React = React;
 
 let data = [{
-  id: 1,
   src: 'src/images/reactjs.png',
   jour: 1
-},{
-  id: 2,
-  src: 'src/images/reactjs.png',
+}, {
+  src: 'src/images/Genesis32XSCD - Golden Axe - Ax Battler.png',
   jour: 1
 }];
 
+let preventOutOfIndex = (index, tableSize) => {
+  alert(index);
+  if (index >= tableSize) {
+    return 0;
+  } else if ( index < 0) {
+    return tableSize - 1;
+  } else {
+    return index;
+  }
+}
+
 class Master extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.state = { index: 0 };
   }
   handleClick(value) {
-    alert(value);
+    switch (value) {
+      case 'left':
+        this.setState({ index: preventOutOfIndex(this.state.index - 1, data.length) });
+        break;
+      case 'right':
+        this.setState({ index: preventOutOfIndex(this.state.index + 1, data.length) });
+        break;
+      default:
+        break;
+
+    }
   }
   render() {
     return (
       <div>
+        <Image source={data[this.state.index].src} />
         <div onClick={() => this.handleClick('left')}>
           <Button direction="left" />
         </div>
@@ -49,43 +70,15 @@ class Image extends React.Component {
   render() {
     return(
       <div>
-        <img src="src/images/reactjs.png" />
+        <img src={this.props.source} />
       </div>
     );
   }
 }
-
-class Comment extends React.Component {
-  render() {
-    let commentaire = this.props.data.commentaire;
-    return (
-      <div className="comment">
-        { commentaire }
-      </div>
-    );
-  }
-}
-
-class Contenu extends React.Component {
-  render() {
-    return (
-      <div >
-        <h1>Hello!!!</h1>
-        <Comment data= {this.props.data} />
-      </div>
-    );
-  }
-}
-
-// const Wrapper1 = button(LeftButton);
-// const Wrapper2 = button(RightButton);
 
 render(
   <div>
-    <Contenu data= { data } />
-    <Image />
     <Master/>
   </div>,
-  // React.createElement(Contenu, null),
   document.getElementById('content')
 );
