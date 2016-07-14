@@ -1,12 +1,14 @@
 import React from 'react';
 import Button from './Button';
 import Image from './Image';
+import styles from '../styles/style.css';
+
 
 let data = [{
-  src: 'images/reactjs.png',
+  src: require('../images/reactjs.png'),
   jour: 1
 }, {
-  src: 'images/Genesis32XSCD - Golden Axe - Ax Battler.png',
+  src: require('../images/goldenaxe.png'),
   jour: 1
 }];
 
@@ -40,14 +42,20 @@ class Master extends React.Component {
   }
   render() {
     let path = data[this.state.index].src;
+
     return (
+
       <div>
-        <Image source={path} />
-        <div onClick={() => this.handleClick('left')}>
-          <Button direction="left" />
+        <div className={styles.photo}>
+          <Image source={path} />
         </div>
-        <div onClick={() => this.handleClick('right')}>
-          <Button direction="right" />
+        <div className={styles.wrapper}>
+          <div className={styles.arrowLeft} onClick={() => this.handleClick('left')}>
+            <Button direction="left" />
+          </div>
+          <div className={styles.arrowRight} onClick={() => this.handleClick('right')}>
+            <Button direction="right" />
+          </div>
         </div>
       </div>
     );
