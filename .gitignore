@@ -1,7 +1,7 @@
 # Build
 build/app.js
 build/style.css
-src/images
+src/images/
 
 # Logs
 logs
