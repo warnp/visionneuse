@@ -1,12 +1,17 @@
+body {
+  background-color: rgb(50, 50, 50);
+}
+
 .photo {
   height: 80%;
-  width: 100%;
+  width: 80%;
   text-align: center;
 }
 
 .photo img {
-  height: auto;
+  height: 100%;
   width: 100%;
+  text-align: center;
 
 }
 

@@ -2,15 +2,7 @@ import React from 'react';
 import Button from './Button';
 import Image from './Image';
 import styles from '../styles/style.css';
-
-
-let data = [{
-  src: require('../images/reactjs.png'),
-  jour: 1
-}, {
-  src: require('../images/goldenaxe.png'),
-  jour: 1
-}];
+import data from '../data'
 
 let preventOutOfIndex = (index, tableSize) => {
   if (index >= tableSize) {
