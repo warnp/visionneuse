@@ -32,6 +32,9 @@ class Master extends React.Component {
 
     }
   }
+  handleKey(key) {
+    alert(key);
+  }
   render() {
     let path = data[this.state.index].src;
 
